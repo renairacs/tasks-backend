@@ -30,9 +30,8 @@ public class TaskControllerTest {
 	@Test
 	public void naoDeveSalvarTarefasSemDescricao() {
 		Task todo = new Task();
-//		todo.setTask("Descricao");
 		todo.setDueDate(LocalDate.now());
-		
+		TaskController controller = new TaskController();		
 		try {
 			controller.save(todo);
 			Assert.fail("Não deveria chegar a esse ponto!");
@@ -44,8 +43,7 @@ public class TaskControllerTest {
 	@Test
 	public void naoDeveSalvarTarefaSemData() {
 		Task todo = new Task();
-//		todo.setTask("Descricao");
-		todo.setDueDate(LocalDate.now());
+		todo.setTask("Descrição");
 		
 		try {
 			controller.save(todo);
@@ -72,10 +70,10 @@ public class TaskControllerTest {
 	}
 	
 	@Test
-	public void DeveSalvarTarefaComSucesso() throws ValidationException {
+	public void deveSalvarTarefaComSucesso() throws ValidationException {
 		Task todo = new Task();
-//		todo.setTask("Descricao");
-		todo.setDueDate(LocalDate.now());				
+		todo.setTask("Descricao");
+		todo.setDueDate(LocalDate.now());	
 		controller.save(todo);
 		Mockito.verify(taskRepo).save(todo);
 	}
